@@ -13,15 +13,16 @@ class CreateTokensTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('tokens', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('token');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('expires_at')->default(DB::raw('CURRENT_TIMESTAMP + INTERVAL 5 DAY'));
-        });
-    }
+{
+    Schema::create('tokens', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+        $table->text('token');
+        $table->timestamp('created_at')->useCurrent();
+        $table->timestamp('expires_at')->nullable();
+    });
+}
+
 
     /**
      * Reverse the migrations.

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from './axiosConfig';
+import axios from './axiosConfig'; // Adjust the path as necessary
 import './Form.css';
 
 const LoginForm = ({ toggleForm }) => {
@@ -9,6 +9,15 @@ const LoginForm = ({ toggleForm }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Clear previous errors
+    setErrors({});
+
+    // Basic validation
+    if (!email || !password) {
+      setErrors({ api: 'Both email and password are required.' });
+      return;
+    }
 
     try {
       const response = await axios.post('/api/login', { email, password });
