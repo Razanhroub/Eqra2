@@ -1,0 +1,19 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import AuthPage from './components/AuthPage';
+import Home from './components/Home';
+import { checkTokenExpiration } from './components/authUtils'; // Adjust the path as necessary
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/home" element={checkTokenExpiration() ? <Home /> : <Navigate to="/auth" />} />
+        <Route path="/" element={<Navigate to="/auth" />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
