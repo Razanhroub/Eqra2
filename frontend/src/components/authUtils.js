@@ -2,26 +2,28 @@ import axios from './axiosConfig'; // Adjust the path as necessary
 
 const checkTokenExpiration = () => {
   const token = localStorage.getItem('token');
-  if (!token) return false;
-
-  const payload = JSON.parse(atob(token.split('.')[1]));
-  const expiry = payload.exp * 1000;
-  return Date.now() < expiry;
+  console.log('Token:', token); // Add this to inspect the token value
+  return !!token; // Return true if token exists, false otherwise
 };
 
 const handleLogin = async (email, password) => {
   try {
     const response = await axios.post('/api/login', { email, password });
-    localStorage.setItem('token', response.data.token);
-    window.location.href = '/home';
+    console.log('Response:', response.data);  // Check the response structure here
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token); // Store the token
+      window.location.href = '/home'; // Redirect to home page or dashboard
+    } else {
+      console.error('No token received from the server.');
+    }
   } catch (error) {
-    console.error('Login failed:', error);
+    throw new Error('Login failed. Please check your credentials and try again.');
   }
 };
 
 const handleLogout = () => {
   localStorage.removeItem('token');
-  window.location.href = '/login';
+  window.location.href = '/auth'; // Redirect to login page
 };
 
 export { checkTokenExpiration, handleLogin, handleLogout };

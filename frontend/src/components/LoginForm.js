@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from './axiosConfig'; // Adjust the path as necessary
 import './Form.css';
+import { handleLogin } from './authUtils'; // Import the handleLogin function
 
 const LoginForm = ({ toggleForm }) => {
   const [email, setEmail] = useState('');
@@ -20,11 +20,9 @@ const LoginForm = ({ toggleForm }) => {
     }
 
     try {
-      const response = await axios.post('/api/login', { email, password });
-      localStorage.setItem('token', response.data.token); // Store the token
-      window.location.href = '/home'; // Redirect to home page or dashboard
+      await handleLogin(email, password);
     } catch (error) {
-      setErrors({ api: 'Login failed. Please check your credentials and try again.' });
+      setErrors({ api: error.message });
     }
   };
 
