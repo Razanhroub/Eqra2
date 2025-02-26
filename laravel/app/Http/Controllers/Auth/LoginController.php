@@ -26,8 +26,7 @@ class LoginController extends Controller
         }
 
         $user = $request->user();
-        // $token = $user->createToken('auth_token', ['*'], now()->addDays(5))->plainTextToken;
-        $token = $user->createToken('auth_token', ['*'], now()->addMinutes(1))->plainTextToken; // Set to 1 minute for testing
+        $token = $user->createToken('auth_token', ['*'], now()->addDays(5))->plainTextToken;
 
 
         // Insert token details into the tokens table

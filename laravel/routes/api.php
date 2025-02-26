@@ -26,7 +26,7 @@ Route::post('/login', [LoginController::class, 'login']); // User login
 Route::middleware('web')->get('/csrf-cookie', function () {
     return response()->json(['message' => 'CSRF cookie set successfully']);
 });
-Route::middleware(['auth:sanctum', 'check.token.expiration'])->group(function () {
+Route::middleware(['check.token.expiration', 'auth:sanctum'])->group(function () {
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/users', [UserController::class, 'store']);
     Route::put('/users/{user}', [UserController::class, 'update']);

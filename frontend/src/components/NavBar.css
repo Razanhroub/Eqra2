@@ -1,0 +1,36 @@
+.navbar {
+    background: linear-gradient(to right, rgba(233, 168, 197, 0.8), rgba(233, 168, 197, 0.5));
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar ul.left {
+    justify-content: flex-start;
+  }
+  
+  .navbar ul.right {
+    justify-content: flex-end;
+  }
+  
+  .navbar li {
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .navbar li:hover {
+    color: #faedf3;
+  }

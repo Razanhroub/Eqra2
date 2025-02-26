@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import AuthPage from './components/AuthPage';
 import Home from './components/Home';
 import UserManagement from './components/UserManagement';
-import { checkTokenExpiration } from './components/authUtils'; // Adjust the path as necessary
-
+import { checkTokenExpiration } from './components/authUtils'; 
 const App = () => {
   return (
     <Router>

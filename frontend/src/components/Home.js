@@ -1,19 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleLogout } from './authUtils'; // Adjust the path as necessary
+import { handleLogout } from './authUtils'; 
+import NavBar from './NavBar'; 
+import './Home.css';
+
 
 const Home = () => {
   const navigate = useNavigate();
 
   const goToUserManagement = () => {
-    navigate('/users');
+    navigate('/user-management');
   };
 
   return (
-    <div className="home-container">
-      <h1>Welcome to the Home Page</h1>
-      <button onClick={goToUserManagement} className="btn">User Management</button>
-      <button onClick={handleLogout} className="btn">Logout</button>
+    <div>
+      <NavBar /> 
+      <div className="home-container">
+        <h1>Welcome to the Home Page</h1>
+
+      </div>
     </div>
   );
 };

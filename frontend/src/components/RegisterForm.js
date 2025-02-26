@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from './axiosConfig'; // Adjust the path as necessary
+import axios from './axiosConfig';
 import './Form.css';
 
 const RegisterForm = ({ toggleForm }) => {
@@ -41,23 +41,25 @@ const RegisterForm = ({ toggleForm }) => {
   };
 
   return (
-    <div className="form-container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-        {errors.name && <p className="error">{errors.name}</p>}
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        {errors.email && <p className="error">{errors.email}</p>}
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        {errors.password && <p className="error">{errors.password}</p>}
-        <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-        {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-        <button className="btn" type="submit">Register</button>
-        {errors.api && <p className="error">{errors.api}</p>}
-      </form>
-      <p>
-        Already have an account? <span onClick={toggleForm} className="toggle-link">Login</span>
-      </p>
+    <div className="container">
+      <div className="wrapper">
+        <h2>Register</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+          {errors.name && <p className="error">{errors.name}</p>}
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          {errors.email && <p className="error">{errors.email}</p>}
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          {errors.password && <p className="error">{errors.password}</p>}
+          <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+          {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+          <button className="btn" type="submit">Register</button>
+          {errors.api && <p className="error">{errors.api}</p>}
+        </form>
+        <p>
+          Already have an account? <span onClick={toggleForm} className="toggle-link">Login</span>
+        </p>
+      </div>
     </div>
   );
 };
