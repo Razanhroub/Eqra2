@@ -13,8 +13,6 @@ class CheckTokenExpiration
 {
     public function handle(Request $request, Closure $next)
     {
-        
-        Log::info('am hereeeeeeeeeeeeeeeeeeeeeeeee');
         Log::info('CheckTokenExpiration middleware executed');
         $user = Auth::user();
         if ($user) {
