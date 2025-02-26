@@ -32,7 +32,11 @@ const RegisterForm = ({ toggleForm }) => {
       await axios.post('/api/register', { name, email, password });
       toggleForm(); // Redirect to login form
     } catch (error) {
-      setErrors({ api: 'Registration failed. Please try again.' });
+      if (error.response && error.response.status === 422) {
+        setErrors(error.response.data.errors);
+      } else {
+        setErrors({ api: 'Registration failed. Please try again.' });
+      }
     }
   };
 

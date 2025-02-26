@@ -3,6 +3,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |---------------------------------------------------------------------------
@@ -23,4 +25,10 @@ Route::post('/login', [LoginController::class, 'login']); // User login
 // CSRF Protection for Sanctum (ensure CSRF token is sent with requests)
 Route::middleware('web')->get('/csrf-cookie', function () {
     return response()->json(['message' => 'CSRF cookie set successfully']);
+});
+Route::middleware(['auth:sanctum', 'check.token.expiration'])->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/users', [UserController::class, 'store']);
+    Route::put('/users/{user}', [UserController::class, 'update']);
+    Route::delete('/users/{user}', [UserController::class, 'destroy']);
 });
